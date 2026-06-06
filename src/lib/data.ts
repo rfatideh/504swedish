@@ -1,5 +1,5 @@
 // src/lib/data.ts
-import wordListJson from "../../default_words_list.json";
+import wordListJson from "../../data/default_words_list.json";
 import type { Lesson, WordList } from "./types";
 
 const wordList = wordListJson as WordList;
