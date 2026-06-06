@@ -1,6 +1,6 @@
 // src/components/LessonCard.tsx
-import Link from 'next/link';
-import type { Lesson } from '../lib/types';
+import Link from "next/link";
+import type { Lesson } from "../lib/types";
 
 export function LessonCard({ lesson }: { lesson: Lesson }) {
   return (

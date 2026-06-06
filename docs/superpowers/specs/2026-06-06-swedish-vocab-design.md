@@ -54,7 +54,7 @@ src/
 | Route | Page | Description |
 |---|---|---|
 | `/` | Home | Lesson grid, 42 cards |
-| `/lessons/[index]` | Lesson detail | Words + story for one lesson |
+| `/lessons/[index]` | Lesson detail | Words + story for one lesson; `index` is the 1-based lesson number from the data (e.g. `/lessons/1`) |
 
 ---
 

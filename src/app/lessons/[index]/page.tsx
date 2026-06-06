@@ -43,8 +43,8 @@ export default async function LessonPage({
       <section>
         <h2 className="mb-4 text-lg font-bold text-zinc-700">Words</h2>
         <div className="space-y-4">
-          {lesson.words.map((word, i) => (
-            <WordCard key={i} word={word} />
+          {lesson.words.map((word) => (
+            <WordCard key={word.text.sv} word={word} />
           ))}
         </div>
       </section>

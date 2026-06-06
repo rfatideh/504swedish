@@ -1,6 +1,6 @@
 // src/lib/data.ts
-import wordListJson from '../../default_words_list.json';
-import type { Lesson, WordList } from './types';
+import wordListJson from "../../default_words_list.json";
+import type { Lesson, WordList } from "./types";
 
 const wordList = wordListJson as WordList;
 

@@ -1,5 +1,5 @@
 // src/components/WordCard.tsx
-import type { Word } from '../lib/types';
+import type { Word } from "../lib/types";
 
 export function WordCard({ word }: { word: Word }) {
   const primary = word.meanings.find((m) => m.is_primary);
@@ -23,8 +23,8 @@ export function WordCard({ word }: { word: Word }) {
       {/* Meanings */}
       <div className="mb-3">
         {primary && <p className="font-semibold text-zinc-800">{primary.en}</p>}
-        {secondary.map((m, i) => (
-          <p key={i} className="text-sm text-zinc-500">
+        {secondary.map((m) => (
+          <p key={m.en} className="text-sm text-zinc-500">
             {m.en}
           </p>
         ))}
@@ -36,9 +36,9 @@ export function WordCard({ word }: { word: Word }) {
           <span className="text-xs font-semibold text-zinc-400">
             Synonymer:
           </span>
-          {word.synonyms.map((s, i) => (
+          {word.synonyms.map((s) => (
             <span
-              key={i}
+              key={s.text.sv}
               className="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-600"
             >
               {s.text.sv}
@@ -53,9 +53,9 @@ export function WordCard({ word }: { word: Word }) {
           <span className="text-xs font-semibold text-zinc-400">
             Antonymer:
           </span>
-          {word.antonyms.map((a, i) => (
+          {word.antonyms.map((a) => (
             <span
-              key={i}
+              key={a.text.sv}
               className="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-600"
             >
               {a.text.sv}
@@ -66,8 +66,8 @@ export function WordCard({ word }: { word: Word }) {
 
       {/* Examples */}
       <div className="mt-4 space-y-3 border-t border-zinc-100 pt-4">
-        {word.examples.map((ex, i) => (
-          <div key={i}>
+        {word.examples.map((ex) => (
+          <div key={ex.text.sv}>
             <p className="text-sm text-zinc-700">{ex.text.sv}</p>
             <p className="text-sm text-zinc-400">{ex.text.en}</p>
           </div>

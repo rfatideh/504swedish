@@ -1,5 +1,5 @@
 // src/components/StorySection.tsx
-import type { Story } from '../lib/types';
+import type { Story } from "../lib/types";
 
 export function StorySection({ story }: { story: Story }) {
   return (
