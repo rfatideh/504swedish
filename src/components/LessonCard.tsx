@@ -1,4 +1,3 @@
-// src/components/LessonCard.tsx
 import Link from "next/link";
 import type { Lesson } from "../lib/types";
 

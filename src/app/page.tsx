@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import { LessonCard } from "../components/LessonCard";
 import { getAllLessons } from "../lib/data";
 

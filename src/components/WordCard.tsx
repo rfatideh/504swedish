@@ -1,4 +1,3 @@
-// src/components/WordCard.tsx
 import type { Word } from "../lib/types";
 
 export function WordCard({ word }: { word: Word }) {

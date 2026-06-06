@@ -1,4 +1,3 @@
-// src/app/lessons/[index]/page.tsx
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StorySection } from "../../../components/StorySection";

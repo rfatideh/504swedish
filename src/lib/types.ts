@@ -1,4 +1,3 @@
-// src/lib/types.ts
 export interface TranslatedText {
   sv: string;
   en: string;
