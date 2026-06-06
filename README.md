@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 504 Swedish Essential Words
+
+A vocabulary learning website for Swedish learners (level A1/A2), inspired by the wording strategy of *504 Absolutely Essential Words* and *Rivstart A1/A2*.
+
+The site presents 42 lessons. Each lesson is built around a short Swedish story and a set of 12–14 essential words, each with its part of speech, English meanings, synonyms/antonyms, and example sentences.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start the development server |
+| `pnpm build` | Production build (statically generates all lesson pages) |
+| `pnpm start` | Serve the production build |
+| `pnpm lint` | Lint with Biome |
+| `pnpm format` | Format with Biome |
 
-## Learn More
+## How It Works
 
-To learn more about Next.js, take a look at the following resources:
+The site is built with the Next.js App Router using Server Components. All pages are statically generated at build time — there is no client-side data fetching. `generateStaticParams` pre-renders every lesson page.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Description |
+|---|---|
+| `/` | Home — grid of all 42 lesson cards |
+| `/lessons/[index]` | A single lesson: its word list followed by the story (`index` is the 1-based lesson number, e.g. `/lessons/1`) |
 
-## Deploy on Vercel
+### Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+data/
+  default_words_list.json   ← All lesson content (stories, words, meanings, examples)
+src/
+  app/
+    page.tsx                ← Home: lesson grid
+    lessons/[index]/page.tsx ← Lesson detail page
+  components/
+    LessonCard.tsx          ← Card in the home grid
+    WordCard.tsx            ← Word entry (word, POS, meanings, synonyms, antonyms, examples)
+    StorySection.tsx        ← Lesson story block
+  lib/
+    types.ts                ← Types for the word list data
+    data.ts                 ← Single access point for the JSON data
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All content lives in `data/default_words_list.json`. Components never import the JSON directly — they go through `src/lib/data.ts`.
+
+## Roadmap
+
+Phase 1 (content display) is complete. Planned next:
+
+- **Phase 2 — Word interaction:** star/bookmark words, a "starred words" page
+- **Phase 3 — Dictionary:** a searchable list of all words across lessons
+- **Phase 4 — Practice:** flashcards and multiple-choice quizzes
+- **Phase 5 — Progress tracking:** mark words learned, lesson completion
+
+See `docs/superpowers/specs/` for the full design spec.
+
+## Tech Stack
+
+Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Biome
