@@ -1,4 +1,6 @@
 import type { Word } from "../../lib/types";
+import { SwedishText } from "../dictionary/SwedishText";
+import { SwedishWord } from "../dictionary/SwedishWord";
 import { Translation } from "../Translation";
 import { Meanings } from "./Meanings";
 import { RelatedWords } from "./RelatedWords";
@@ -27,9 +29,10 @@ export function WordEntry({
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#006AA7] text-sm font-semibold text-white">
               {number}
             </span>
-            <span className="wrap-break-word text-2xl font-bold text-zinc-900">
-              {headword}
-            </span>
+            <SwedishWord
+              word={headword}
+              className="wrap-break-word text-2xl font-bold text-zinc-900 transition-colors hover:text-[#006AA7]"
+            />
           </div>
         )}
         {senseLabel && (
@@ -63,7 +66,9 @@ export function WordEntry({
             )}
             {word.examples.map((ex) => (
               <div key={ex.text.sv}>
-                <p className="text-lg text-zinc-700">{ex.text.sv}</p>
+                <SwedishText className="block text-lg text-zinc-700">
+                  {ex.text.sv}
+                </SwedishText>
                 <Translation className="text-md text-zinc-400">
                   {ex.text.en}
                 </Translation>
