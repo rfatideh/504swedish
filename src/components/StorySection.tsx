@@ -1,4 +1,5 @@
 import type { Story } from "../lib/types";
+import { Translation } from "./Translation";
 
 export function StorySection({ story }: { story: Story }) {
   return (
@@ -9,10 +10,10 @@ export function StorySection({ story }: { story: Story }) {
       <h3 className="mb-5 text-base font-semibold text-zinc-600">
         {story.title.sv} / {story.title.en}
       </h3>
-      <p className="text-base leading-relaxed text-zinc-800">{story.text.sv}</p>
-      <p className="mt-4 text-base leading-relaxed text-zinc-400">
+      <p className="text-lg leading-relaxed text-zinc-800">{story.text.sv}</p>
+      <Translation className="mt-4 block text-base leading-relaxed text-zinc-400">
         {story.text.en}
-      </p>
+      </Translation>
     </section>
   );
 }

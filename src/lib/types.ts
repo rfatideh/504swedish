@@ -37,6 +37,11 @@ export interface Lesson {
   words: Word[];
 }
 
+export interface WordGroup {
+  text: string;
+  entries: Word[];
+}
+
 export interface WordListMeta {
   id: string;
   title: TranslatedText;
