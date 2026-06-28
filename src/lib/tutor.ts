@@ -1,8 +1,8 @@
-export type TutorMode = "bilingual" | "immersion" | "english";
+export type TutorMode = "bilingual" | "swedish" | "english";
 
-export const DEFAULT_MODE: TutorMode = "bilingual";
+export const DEFAULT_MODE: TutorMode = "swedish";
 
-/** Vercel AI Gateway slug for Claude Haiku 4.5 (verified against the gateway provider). */
+/** Vercel AI Gateway slug*/
 // export const GATEWAY_MODEL = "anthropic/claude-haiku-4.5";
 export const GATEWAY_MODEL = "openai/gpt-4o-mini";
 
@@ -17,7 +17,7 @@ export const TUTOR_MODES: {
     label: "Bilingual",
     description: "Simple Swedish + English gloss",
   },
-  { id: "immersion", label: "Immersion", description: "Mostly Swedish" },
+  { id: "swedish", label: "Swedish", description: "Mostly Swedish" },
   { id: "english", label: "English", description: "Explained in English" },
 ];
 
@@ -31,6 +31,6 @@ const BASE = [
 
 export const SYSTEM_PROMPTS: Record<TutorMode, string> = {
   bilingual: `${BASE} Reply in simple Swedish first, then give a brief English gloss (in parentheses or on the next line) so a beginner can follow.`,
-  immersion: `${BASE} Reply mostly in simple Swedish; use English only sparingly for a critical clarification. Prefer rephrasing in easier Swedish over translating.`,
+  swedish: `${BASE} Reply mostly in simple Swedish; use English only sparingly for a critical clarification. Prefer rephrasing in easier Swedish over translating.`,
   english: `${BASE} Reply primarily in clear English, explaining grammar and usage, and always include Swedish example words/sentences with their meanings.`,
 };

@@ -19,6 +19,9 @@ export function DictionaryModal({
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        // Consume Escape so an underlying overlay that also closes on Escape
+        // (e.g. the tutor widget) doesn't close at the same time.
+        e.stopPropagation();
         onClose();
       }
     };

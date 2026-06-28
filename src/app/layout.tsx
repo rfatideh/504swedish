@@ -41,9 +41,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <SettingsProvider>
-          <DictionaryProvider>{children}</DictionaryProvider>
+          <DictionaryProvider>
+            {children}
+            <TutorWidget />
+          </DictionaryProvider>
         </SettingsProvider>
-        <TutorWidget />
       </body>
     </html>
   );
