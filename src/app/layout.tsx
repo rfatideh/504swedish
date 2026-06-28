@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { DictionaryProvider } from "../components/dictionary/DictionaryProvider";
 import { SettingsProvider } from "../components/settings/SettingsProvider";
+import { TutorWidget } from "../components/tutor/TutorWidget";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,6 +43,7 @@ export default function RootLayout({
         <SettingsProvider>
           <DictionaryProvider>{children}</DictionaryProvider>
         </SettingsProvider>
+        <TutorWidget />
       </body>
     </html>
   );
