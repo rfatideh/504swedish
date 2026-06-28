@@ -4,6 +4,7 @@
 // as a non-serializable Server Action boundary crossing.
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { DEFAULT_MODE, TUTOR_MODES, type TutorMode } from "@/lib/tutor";
 import { ChatMessage } from "./ChatMessage";
@@ -26,6 +27,10 @@ export function TutorPanel({ onClose }: { onClose: () => void }) {
   const [mode, setMode] = useState<TutorMode>(DEFAULT_MODE);
   const [input, setInput] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
+
+  const pathname = usePathname();
+  const lessonMatch = pathname?.match(/^\/lessons\/(\d+)/);
+  const lessonIndex = lessonMatch ? Number(lessonMatch[1]) : undefined;
 
   // Restore the saved mode on mount.
   useEffect(() => {
@@ -53,7 +58,7 @@ export function TutorPanel({ onClose }: { onClose: () => void }) {
   function send() {
     const text = input.trim();
     if (!text || busy) return;
-    sendMessage({ text }, { body: { mode } });
+    sendMessage({ text }, { body: { mode, lessonIndex } });
     setInput("");
   }
 
@@ -82,6 +87,13 @@ export function TutorPanel({ onClose }: { onClose: () => void }) {
           ✕
         </button>
       </header>
+
+      {lessonIndex !== undefined && (
+        <div className="flex items-center gap-1.5 border-b border-zinc-100 bg-zinc-50 px-4 py-1.5 text-xs text-zinc-500">
+          <span aria-hidden>📖</span>
+          <span>Following along with Lektion {lessonIndex}</span>
+        </div>
+      )}
 
       <div className="flex-1 overflow-y-auto px-4 py-4">
         {messages.length === 0 && (

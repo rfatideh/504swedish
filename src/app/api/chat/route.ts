@@ -7,20 +7,26 @@ import {
   type UIMessage,
 } from "ai";
 import {
+  buildSystemPrompt,
   DEFAULT_MODE,
   GATEWAY_MODEL,
-  SYSTEM_PROMPTS,
   type TutorMode,
 } from "@/lib/tutor";
+import { getLessonContext } from "@/lib/tutorContext";
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages, mode }: { messages: UIMessage[]; mode?: TutorMode } =
+  const {
+    messages,
+    mode,
+    lessonIndex,
+  }: { messages: UIMessage[]; mode?: TutorMode; lessonIndex?: number } =
     await req.json();
 
-  const system =
-    SYSTEM_PROMPTS[mode ?? DEFAULT_MODE] ?? SYSTEM_PROMPTS[DEFAULT_MODE];
+  const lessonContext =
+    typeof lessonIndex === "number" ? getLessonContext(lessonIndex) : undefined;
+  const system = buildSystemPrompt(mode ?? DEFAULT_MODE, lessonContext);
 
   const result = streamText({
     model: gateway(GATEWAY_MODEL),
